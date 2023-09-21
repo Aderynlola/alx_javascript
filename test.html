@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style="height: 120vh; background-color: beige;">
+
+    </div>
+    <div style="height: 120vh; background-color: rgb(159, 159, 19); display: flex;">
+        <div class="fade fade-left btn-fade" style="background-color: rgb(72, 176, 131);height: 60vh;width: 50vw;">
+            Flex
+        </div>
+        <div class="fade fade-right" style="background-color: rgb(162, 191, 178);height: 60vh;width: 50vw;">
+            Flex
+        </div>
+        <div class="fade fade-down" style="background-color: rgb(72, 176, 131);height: 60vh;width: 50vw;">
+            Flex
+        </div>
+        <div class="fade fade-up" style="background-color: rgb(162, 191, 178);height: 60vh;width: 50vw;">
+            Flex
+        </div>
+    </div>
+
+</body>
+
+</html>
+<style>
+
+    .btn-fade:hover{
+background-color: #91FCFD !important;
+    }
+    
+    .fade-left {
+        transform: translateX(-200px);
+        opacity:0;
+        transition:  transform 1s,opacity 1s;
+    }
+
+    .fade-right {
+        transform: translateX(200px);
+        opacity:0;
+        transition:  transform 1s,opacity 1s;
+    }
+
+    .fade-down {
+        transform: translateY(200px);
+        opacity:0;
+        transition: transform 1s,opacity 1s;
+    }
+    .fade-up {
+        transform: translateY(-200px);
+        opacity:0;
+        transition: transform 1s,opacity 1s;
+    }
+    
+
+    .in-viewport {
+        transform: translate(0);
+        opacity:1
+    }
+</style>
+
+<script>
+        var fadeElements = document.querySelectorAll('.fade');
+        var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-viewport');
+                } else {
+                    entry.target.classList.remove('in-viewport');
+                }
+            });
+        });
+        fadeElements.forEach(function (element) {
+            observer.observe(element);
+        });
+</script>
